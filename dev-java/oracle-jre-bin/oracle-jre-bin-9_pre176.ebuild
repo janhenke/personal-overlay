@@ -10,7 +10,7 @@ inherit eutils java-vm-2 prefix versionator
 JRE_URI="https://jdk9.java.net/download/"
 
 BUILD_NUMBER="$(get_version_component_range 2)"
-MY_PV="$(get_version_component_range 1)-ea+${BUILD_NUMBER#pre}"
+MY_PV="$(get_version_component_range 1)+${BUILD_NUMBER#pre}"
 AT_amd64="jre-${MY_PV}_linux-x64_bin.tar.gz"
 AT_x86="jre-${MY_PV}_linux-x86_bin.tar.gz"
 AT_x64_solaris="jre-${MY_PV}_solaris-x64_bin.tar.gz"

@@ -9,11 +9,11 @@ inherit eutils java-vm-2 prefix versionator
 JDK_URI="https://jdk9.java.net/download/"
 
 BUILD_NUMBER="$(get_version_component_range 2)"
-MY_PV="$(get_version_component_range 1)-ea+${BUILD_NUMBER#pre}"
+MY_PV="$(get_version_component_range 1)+${BUILD_NUMBER#pre}"
 
 # This is a list of archs supported by this update.
 # Currently arm comes and goes.
-AT_AVAILABLE=( arm arm64 amd64 x86 x64-solaris sparc64-solaris x64-macos )
+AT_AVAILABLE=( amd64 )
 
 AT_amd64="jdk-${MY_PV}_linux-x64_bin.tar.gz"
 AT_arm="jdk-${MY_PV}_linux-arm32-vfp-hflt_bin.tar.gz"
@@ -33,7 +33,8 @@ unset d
 
 LICENSE="Oracle-EADLA" # will probably change to Oracle-BCLA-JavaSE when released
 SLOT="9"
-KEYWORDS="~arm ~arm64 ~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos ~sparc64-solaris ~x64-solaris"
+#KEYWORDS="~arm ~arm64 ~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos ~sparc64-solaris ~x64-solaris"
+KEYWORDS="~amd64"
 IUSE="alsa cups derby doc +fontconfig headless-awt javafx nsplugin pax_kernel selinux source"
 REQUIRED_USE="javafx? ( alsa fontconfig )"
 
