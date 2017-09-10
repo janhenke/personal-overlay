@@ -1,16 +1,15 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
 inherit toolchain-funcs
 
-DESCRIPTION="Firmware files for Broadcom Bluetooth devices"
+DESCRIPTION="Firmware for BCM20702, BCM20703, BCM43142 chipsets and other Broadcom devices"
 
 HOMEPAGE="https://github.com/winterheart/broadcom-bt-firmware/"
 SRC_URI="https://github.com/winterheart/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-LICENSE="Broadcomm"
+LICENSE="Broadcom"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
