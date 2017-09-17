@@ -3,8 +3,6 @@
 
 EAPI=6
 
-inherit toolchain-funcs
-
 DESCRIPTION="Firmware for BCM20702, BCM20703, BCM43142 chipsets and other Broadcom devices"
 
 HOMEPAGE="https://github.com/winterheart/broadcom-bt-firmware/"
@@ -13,6 +11,16 @@ LICENSE="Broadcom"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
+
+src_configure() {
+	# noop
+	:
+}
+
+src_compile() {
+	# noop
+	:
+}
 
 src_install() {
 	insinto /lib/firmware
