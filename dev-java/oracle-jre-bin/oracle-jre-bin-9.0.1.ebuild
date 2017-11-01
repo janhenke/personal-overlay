@@ -27,7 +27,7 @@ done
 unset file
 
 LICENSE="Oracle-BCLA-JavaSE"
-SLOT="$(get_version_component_range 1)"
+SLOT="9"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos ~sparc64-solaris ~x64-solaris"
 IUSE="alsa commercial cups +fontconfig headless-awt javafx nsplugin selinux"
 

@@ -30,7 +30,7 @@ DEMOS_sparc64_solaris="jdk-${MY_PV}-solaris-sparcv9_bin-demos.tar.gz"
 DEMOS_x64_macos="jdk-${MY_PV}-macosx-x86_64_bin-demos.zip"
 
 DESCRIPTION="Oracle's Java SE Development Kit"
-HOMEPAGE="http://jdk.java.net/$(get_version_component_range 1)/"
+HOMEPAGE="http://jdk.java.net/9/"
 for file in "${AT_AVAILABLE[@]}"; do
 	SRC_URI+=" ${file}? ( $(eval "echo \${$(echo AT_${file/-/_})}")"
 	if has ${file} "${DEMOS_AVAILABLE[@]}"; then
@@ -41,7 +41,7 @@ done
 unset file
 
 LICENSE="Oracle-BCLA-JavaSE"
-SLOT="$(get_version_component_range 1)"
+SLOT="9"
 KEYWORDS="~arm ~arm64 ~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos ~sparc64-solaris ~x64-solaris"
 IUSE="alsa commercial cups doc examples +fontconfig headless-awt javafx nsplugin selinux source"
 REQUIRED_USE="javafx? ( alsa fontconfig )"
