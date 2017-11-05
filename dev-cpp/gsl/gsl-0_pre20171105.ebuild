@@ -3,13 +3,11 @@
 
 EAPI=6
 
-#inherit cmake-utils
+inherit cmake-utils
 
 DESCRIPTION="Guideline Support Library implementation by Microsoft."
 HOMEPAGE="https://github.com/Microsoft/GSL"
 SRC_URI="https://github.com/Microsoft/GSL/archive/master.zip -> ${PV}.zip"
-
-S="${WORKDIR}/GSL-master"
 
 LICENSE="MIT"
 
@@ -24,15 +22,17 @@ DEPEND=" test? ( >=dev-cpp/catch-1.11.0 )"
 # header only library
 RDEPEND=""
 
+S="${WORKDIR}/GSL-master"
+
+src_prepare() {
+	cmake-utils_src_prepare
+}
+
 src_configure() {
-	:
+	cmake-utils_src_configure
 }
 
-src_compile() {
-	:
-}
-
-src_install() {
-	insinto /usr/include
-	doins -r include/gsl
+src_test() {
+	cd "${CMAKE_BUILD_DIR}" || die
+	emake test
 }
