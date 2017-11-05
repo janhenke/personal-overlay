@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+	<email>gentoo@taujhe.de</email>
+	<description>Jan Henke</description>
+</maintainer>
+<longdescription>Microsoft's implmentation of the Guidline Support Library.</longdescription>
+<use>
+</use>
+</pkgmetadata>
