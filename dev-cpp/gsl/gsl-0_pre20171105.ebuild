@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit cmake-utils
+#inherit cmake-utils
 
 DESCRIPTION="Guideline Support Library implementation by Microsoft."
 HOMEPAGE="https://github.com/Microsoft/GSL"
