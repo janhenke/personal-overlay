@@ -29,6 +29,11 @@ src_prepare() {
 }
 
 src_configure() {
+
+	local mycmakeargs=(
+                -DGSL_TEST="$(usex test)"
+                )
+
 	cmake-utils_src_configure
 }
 
