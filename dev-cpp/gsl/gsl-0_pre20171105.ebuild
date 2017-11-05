@@ -9,6 +9,8 @@ DESCRIPTION="Guideline Support Library implementation by Microsoft."
 HOMEPAGE="https://github.com/Microsoft/GSL"
 SRC_URI="https://github.com/Microsoft/GSL/archive/master.zip -> ${PV}.zip"
 
+S="${WORKDIR}/GSL-master"
+
 LICENSE="MIT"
 
 SLOT="0"
