@@ -21,6 +21,8 @@ DEPEND=" test? ( >=dev-cpp/catch-1.11.0 )"
 # header only library
 RDEPEND=""
 
+S="${WORKDIR}/Microsoft-GSL-${COMMIT:0:7}"
+
 src_configure() {
 	local mycmakeargs=(
 		-DGSL_TEST="$(usex test)"
