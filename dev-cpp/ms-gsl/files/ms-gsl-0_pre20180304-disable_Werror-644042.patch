@@ -22,14 +22,6 @@ index 0e08d77..86e9af7 100644
          -Wextra
          -Wno-missing-braces
          -Wnon-virtual-dtor
-@@ -129,7 +128,6 @@ target_compile_options(gsl_tests_config_noexcept INTERFACE
-         -Wcast-align
-         -Wconversion
-         -Wctor-dtor-privacy
--        -Werror
-         -Wextra
-         -Wno-missing-braces
-         -Wnon-virtual-dtor
 -- 
 2.16.1
 
