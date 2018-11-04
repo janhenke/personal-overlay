@@ -6,7 +6,7 @@ EAPI=6
 inherit autotools check-reqs flag-o-matic java-pkg-2 java-vm-2 multiprocessing pax-utils toolchain-funcs
 
 MY_PV=${PV/_p/+}
-SLOT=${MY_PV%%[.+]*}
+SLOT="${MY_PV%%[.+]*}"
 
 DESCRIPTION="Open source implementation of the Java programming language"
 HOMEPAGE="https://openjdk.java.net"
