@@ -14,6 +14,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 IUSE=""
 
-S="${WORKDIR}/{$PN}-master"
+S="${WORKDIR}/b612-master"
 FONT_S="${S}/TTF"
 FONT_SUFFIX="ttf"
