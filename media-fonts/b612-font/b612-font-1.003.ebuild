@@ -17,3 +17,5 @@ IUSE=""
 S="${WORKDIR}/b612-master"
 FONT_S="${S}/TTF"
 FONT_SUFFIX="ttf"
+
+DOCS="README.md"
