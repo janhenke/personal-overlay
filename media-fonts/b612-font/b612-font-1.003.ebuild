@@ -5,7 +5,7 @@ EAPI=6
 
 inherit font
 
-DESCRIPTION="Font designed for aircraft coclpit displays"
+DESCRIPTION="Font designed for aircraft cockpit displays"
 HOMEPAGE="http://b612-font.com/"
 SRC_URI="http://git.polarsys.org/c/b612/b612.git/snapshot/b612-master.zip -> ${P}.zip"
 
