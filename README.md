@@ -6,7 +6,7 @@ If you want to use this overlay, copy this text into a new file in ```/etc/porta
 
 ```
 [personal-overlay]
-location = /usr/local/overlay/personal-overlay
+location = /var/db/repos/personal-overlay
 sync-type = git
 sync-uri = https://github.com/janhenke/personal-overlay
 auto-sync = yes
