@@ -9,9 +9,6 @@
 		<email>proxy-maint@gentoo.org</email>
 		<name>Proxy Maintainers</name>
 	</maintainer>
-	<longdescription>
-		The free and open-source typeface for developers.
-	</longdescription>
 	<upstream>
 		<remote-id type="github">JetBrains/JetBrainsMono</remote-id>
 	</upstream>
