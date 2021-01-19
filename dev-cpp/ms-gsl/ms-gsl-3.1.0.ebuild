@@ -1,9 +1,9 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit cmake-utils
+inherit cmake
 
 DESCRIPTION="Guideline Support Library implementation by Microsoft"
 HOMEPAGE="https://github.com/Microsoft/GSL"
@@ -13,7 +13,7 @@ S="${WORKDIR}/GSL-${PV}"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc64 ~x86"
+KEYWORDS="amd64 ~ppc64 ~x86"
 IUSE="test"
 RESTRICT="!test? ( test )"
 
@@ -30,5 +30,5 @@ src_configure() {
 	local mycmakeargs=(
 		-DGSL_TEST=$(usex test)
 	)
-	cmake-utils_src_configure
+	cmake_src_configure
 }
