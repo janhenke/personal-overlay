@@ -26,7 +26,7 @@ BDEPEND="
 
 PATCHES=(
 	"${FILESDIR}/${P}"-CMakeLists.patch
-#	"${FILESDIR}/${P}"-source_CMakeLists.patch
+	"${FILESDIR}/${P}"-source_CMakeLists.patch
 )
 
 src_configure() {
