@@ -7,9 +7,7 @@ inherit cmake
 
 DESCRIPTION="Cross-platform C++ binding for the OpenGL API"
 HOMEPAGE="https://github.com/cginternals/glbinding"
-COMMIT="55634e35bd8d8bf58cb36f6ed81af0a0f0939973"
-SRC_URI="https://github.com/cginternals/glbinding/archive/${COMMIT}.tar.gz -> ${P}.tar.gz"
-S="${WORKDIR}/${PN}-${COMMIT}"
+SRC_URI="https://github.com/cginternals/glbinding/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -26,7 +24,6 @@ BDEPEND="
 
 PATCHES=(
 	"${FILESDIR}/${P}"-CMakeLists.patch
-	"${FILESDIR}/${P}"-source_CMakeLists.patch
 )
 
 src_configure() {
@@ -39,7 +36,14 @@ src_configure() {
 		-DOPTION_BUILD_WITH_BOOST_THREAD=OFF
 		-DOPTION_BUILD_CHECK=OFF
 		-DOPTION_BUILD_OWN_KHR_HEADERS=OFF
-		-DOPTION_BUILD_WITH_LTO=OFF
+		-DOPTION_BUILD_WITH_LTO=ON
 	)
 	cmake_src_configure
+}
+
+src_install() {
+	cmake_src_install
+
+	# already installed by libglvnd
+	rm "${D}/usr/include/KHR/khrplatform.h" || die "Deleting KHR header file failed."
 }
