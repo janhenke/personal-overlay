@@ -156,9 +156,6 @@ multilib_src_install_all() {
 	# Stray windows locale file, bug #650118
 #	rm "${ED}"/usr/share/locale/it/LC_MESSAGES/wxmsw30-gtk3.mo || die
 
-	# FIXME: not properly slotted
-	rm "${ED}"/usr/share/bakefile/presets/wx* || die
-
 	# Unversioned links
 	rm "${ED}"/usr/bin/wx-config || die
 	use X && { rm "${ED}"/usr/bin/wxrc || die; }
@@ -167,7 +164,7 @@ multilib_src_install_all() {
 	pushd "${ED}"/usr/share/bakefile/presets >/dev/null || die
 	local f
 	for f in wx*; do
-		mv "${f}" "${f/wx/wx30gtk3}" || die
+		mv "${f}" "${f/wx/wx32gtk3}" || die
 	done
 	popd >/dev/null || die
 }
