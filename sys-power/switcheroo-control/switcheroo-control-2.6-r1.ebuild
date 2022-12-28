@@ -12,23 +12,20 @@ SRC_URI="https://gitlab.freedesktop.org/hadess/switcheroo-control/uploads/86ea54
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="gtk-doc test"
+IUSE="gtk-doc test systemd"
 
-KEYWORDS="amd64"
+KEYWORDS="~amd64"
 
 RDEPEND="
 	>=dev-libs/glib-2.56.0:2
 	>=dev-libs/libgudev-232:=
-	|| (
-		sys-apps/systemd
-		sys-auth/elogind
-	)
+	systemd? ( sys-apps/systemd )
 "
 DEPEND="${RDEPEND}"
 BDEPEND="
 	gtk-doc? ( dev-util/gtk-doc )
 	test? (
-	        $(python_gen_any_dep 'dev-python/python-dbusmock[${PYTHON_USEDEP}]')
+		$(python_gen_any_dep 'dev-python/python-dbusmock[${PYTHON_USEDEP}]')
 		dev-util/umockdev
 	)
 "
@@ -44,13 +41,27 @@ src_configure() {
 	local emesonargs=(
 		$(meson_use gtk-doc gtk_doc)
 		$(meson_use test tests)
-		-Dsystemdsystemunitdir="$(systemd_get_systemunitdir)"
 	)
+
+	# to keep meson happy without systemd dependency
+	if ! use systemd ; then
+		emesonargs+=( -Dsystemdsystemunitdir="$(systemd_get_systemunitdir)" )
+	fi
+
 	meson_src_configure
 }
 
+src_install() {
+	meson_src_install
+	python_fix_shebang "${D}"/usr/bin/switcherooctl
+
+	if ! use systemd; then
+		newinitd "${FILESDIR}"/${PN}-init.d ${PN}
+	fi;
+}
+
 pkg_postinst() {
-	if [[ -z "${REPLACING_VERSIONS}" ]]; then
+	if [[ -z "${REPLACING_VERSIONS}" ]] && use systemd ; then
 		elog "You need to run systemd and enable the service:"
 		elog "# systemctl enable switcheroo-control"
 	fi
