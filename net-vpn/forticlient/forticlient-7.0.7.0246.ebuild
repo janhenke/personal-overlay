@@ -91,7 +91,9 @@ src_install() {
 
 	exeinto /opt/forticlient
 	doexe opt/forticlient/confighandler \
+		opt/forticlient/epctrl \
 		opt/forticlient/fctsched \
+		opt/forticlient/forticlient-cli \
 		opt/forticlient/fortitray \
 		opt/forticlient/fortitraylauncher \
 		opt/forticlient/fortivpn \
