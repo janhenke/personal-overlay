@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit desktop multilib-build pax-utils systemd unpacker xdg
+inherit desktop multilib-build pax-utils systemd unpacker xdg wrapper
 
 DESCRIPTION="Fortinet VPN client"
 HOMEPAGE="https://www.forticlient.com"
@@ -13,7 +13,7 @@ LICENSE="Fortinet-EULA"
 SLOT="0"
 KEYWORDS="-* ~amd64"
 IUSE=""
-RESTRICT="bindist mirror"
+RESTRICT="bindist mirror strip"
 
 # dev-libs/libappindicator:2 required by fortitray
 RDEPEND="
@@ -79,30 +79,33 @@ src_install() {
 			forticlient.png
 	done
 	dosym ../icons/hicolor/256x256/apps/forticlient.png \
-		/usr/share/pixmaps/forticlient.png
+		${EPREFIX}/usr/share/pixmaps/forticlient.png
 
-	insinto /usr/share/polkit-1/actions
+	insinto ${EPREFIX}/usr/share/polkit-1/actions
 	doins usr/share/polkit-1/actions/org.fortinet.forti{client,tray}.policy
 
 	domenu usr/share/applications/forticlient.desktop
+	domenu usr/share/applications/forticlient-register.desktop
 
 #	insinto /etc/forticlient
 #	doins etc/forticlient/config.db
 
-	exeinto /opt/forticlient
-	doexe opt/forticlient/confighandler \
-		opt/forticlient/epctrl \
-		opt/forticlient/fctsched \
-		opt/forticlient/forticlient-cli \
-		opt/forticlient/fortitray \
-		opt/forticlient/fortitraylauncher \
-		opt/forticlient/fortivpn \
-		opt/forticlient/vpn
+	insinto ${EPREFIX}/opt/forticlient
+	exeinto ${EPREFIX}/opt/forticlient
 
-	insinto /opt/forticlient/images
-	doins -r opt/forticlient/images/.
+	local nonGuiExe=( confighandler epctrl fazlogupload fchelper fctsched fmon forticlient-cli fortitray fortitraylauncher fortivpn vpn )
+	for exe in "${nonGuiExe[@]}"
+	do
+		doexe opt/forticlient/${exe}
+	done
 
-	insinto /opt/forticlient/gui/FortiClient-linux-x64
+	doexe opt/forticlient/{libav.so,libvcm.so}
+
+	doins -r opt/forticlient/images
+
+	doins -r opt/forticlient/tpm2
+
+	insinto ${EPREFIX}/opt/forticlient/gui/FortiClient-linux-x64
 	doins -r opt/forticlient/gui/FortiClient-linux-x64/.
 
 	fperms +x /opt/forticlient/gui/FortiClient-linux-x64/swiftshader/libEGL.so \
@@ -114,9 +117,7 @@ src_install() {
 		/opt/forticlient/gui/FortiClient-linux-x64/libvulkan.so \
 		/opt/forticlient/gui/FortiClient-linux-x64/libffmpeg.so
 
-	dodir /opt/bin
-	dosym ../forticlient/gui/FortiClient-linux-x64/FortiClient opt/bin/FortiClient
-	dosym ../forticlient/fortivpn opt/bin/fortivpn
+	make_wrapper FortiClient /opt/forticlient/gui/FortiClient-linux-x64{/FortiClient,} /opt/forticlient:/opt/forticlient/gui/FortiClient-linux-x64
 
 	systemd_dounit lib/systemd/system/forticlient.service
 
