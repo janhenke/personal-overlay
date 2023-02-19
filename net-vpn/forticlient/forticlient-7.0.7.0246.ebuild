@@ -108,14 +108,12 @@ src_install() {
 	insinto ${EPREFIX}/opt/forticlient/gui/FortiClient-linux-x64
 	doins -r opt/forticlient/gui/FortiClient-linux-x64/.
 
-	fperms +x /opt/forticlient/gui/FortiClient-linux-x64/swiftshader/libEGL.so \
-		/opt/forticlient/gui/FortiClient-linux-x64/swiftshader/libGLESv2.so \
-		/opt/forticlient/gui/FortiClient-linux-x64/FortiClient \
-		/opt/forticlient/gui/FortiClient-linux-x64/libEGL.so \
-		/opt/forticlient/gui/FortiClient-linux-x64/libGLESv2.so \
-		/opt/forticlient/gui/FortiClient-linux-x64/libvk_swiftshader.so \
-		/opt/forticlient/gui/FortiClient-linux-x64/libvulkan.so \
-		/opt/forticlient/gui/FortiClient-linux-x64/libffmpeg.so
+	# link system libraries as the binary tries to dlopen them
+	local guiExe=( chrome-sandbox FortiClient libEGL.so libffmpeg.so libGLESv2.so libvk_swiftshader.so libvulkan.so )
+	for exe in "${guiExe[@]}"
+	do
+		fperms +x ${EPREFIX}/opt/forticlient/gui/FortiClient-linux-x64/${exe}
+	done
 
 	make_wrapper FortiClient /opt/forticlient/gui/FortiClient-linux-x64{/FortiClient,} /opt/forticlient:/opt/forticlient/gui/FortiClient-linux-x64
 
