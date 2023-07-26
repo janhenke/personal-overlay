@@ -15,4 +15,10 @@ LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 
+RDEPEND="
+	dev-python/colorama[${PYTHON_USEDEP}]
+	>=dev-python/pyyaml-5.1[${PYTHON_USEDEP}]
+	dev-python/pykwalify[${PYTHON_USEDEP}]
+"
+
 distutils_enable_tests pytest
